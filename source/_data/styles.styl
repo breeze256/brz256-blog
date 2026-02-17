@@ -1,0 +1,72 @@
+/* source/_data/styles.styl */
+
+/* =========================================
+   1. 图标映射配置表
+   格式：'FontAwesome 类名': 'Material Icons 名称'
+   ========================================= */
+material_icons_map = {
+  /* 菜单 */
+  '.fa-home': 'home'
+  '.fa-tags': 'label'
+  '.fa-archive': 'archive'
+  '.fa-th': 'category'
+  '.fa-heartbeat': 'monitor_heart'
+  
+  /* 社交 */
+  '.fa-github': 'code'
+  '.fa-twitter': 'chat'
+  '.fa-weibo': 'share'
+  '.fa-zhihu': 'lightbulb'
+  '.fa-envelope': 'mail'
+  
+  /* 文章信息 */
+  '.fa-calendar': 'calendar_today'
+  '.fa-clock': 'schedule'
+  '.fa-pencil': 'edit'
+  
+  /* 其他 */
+  '.fa-arrow-up': 'arrow_upward'
+  '.fa-globe': 'public'
+}
+
+/* =========================================
+   2. 自动生成映射样式 (核心逻辑)
+   只遍历映射表中的图标，未在此列表的图标不受影响
+   ========================================= */
+for fa_selector, mi_name in material_icons_map
+  {fa_selector}
+    /* 切换字体为 Material Icons */
+    font-family 'Material Icons' !important
+    
+    /* 重置 FontAwesome 的默认样式 */
+    font-weight normal !important
+    font-style normal !important
+    font-variant normal !important
+    text-transform none !important
+    
+    /* 对齐与渲染优化 */
+    vertical-align middle
+    line-height 1
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+
+    /* 设置伪元素内容 */
+    &::before
+      content mi_name !important
+      font-family 'Material Icons' !important
+
+/* =========================================
+   3. 全局微调 (不影响字体，只调整间距大小)
+   这里可以安全地调整 .fa 通用样式，因为没改 font-family
+   ========================================= */
+.menu-item .fa
+  font-size 16px
+  margin-right 2px
+
+.links-of-blogroll .fa
+  font-size 15px
+  margin-right 2px
+  margin-bottom: 2px
+
+.post-meta .fa
+  margin-right 2px
