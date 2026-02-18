@@ -9,8 +9,36 @@
     <title>Content Manager</title>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <script type="module">
+      import Markdown from 'https://esm.sh/react-markdown@9.1.0?bundle';
+      import remarkMath from 'https://esm.sh/remark-math@6.0.0?bundle';
+      import rehypeMathjax from 'https://esm.sh/rehype-mathjax@5.0.0?bundle';
+      import remarkGfm from 'https://esm.sh/remark-gfm@4.0.0?bundle';
+      import rehypeRaw from 'https://esm.sh/rehype-raw@7.0.0?bundle';
+
+      window.MarkdownComponent = Markdown;
+      window.MarkdownPlugins = {
+        remarkPlugins: [remarkMath, remarkGfm],
+        rehypePlugins: [rehypeMathjax, rehypeRaw]
+      };
+      
+      window.renderMathJax = () => {
+         if (window.MathJax?.typesetPromise) {
+             window.MathJax.typesetPromise().catch(console.error);
+         }
+      };
+    </script>
+
+    <script>
+        CMS.registerPreviewStyle("/css/main.css");
+        CMS.registerPreviewStyle("/admin/preview.css");
+    </script>
+
     <script src="preview.js"></script>
   </body>
 </html>
