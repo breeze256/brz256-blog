@@ -1,0 +1,65 @@
+/* 只隐藏默认头像 SVG */
+[class*="AvatarPlaceholderIcon"] svg {
+  display: none !important;
+}
+
+/* 在同一个容器中覆盖头像 */
+[class*="AvatarPlaceholderIcon"] {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+[class*="AvatarPlaceholderIcon"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image: url("/images/breeze256.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* =========================
+   1️⃣ 隐藏默认 SVG
+   ========================= */
+
+button[title="打开/关闭预览"] svg,
+button[title="Toggle preview"] svg,
+button[title="同步滚动"] svg,
+button[title="Sync scrolling"] svg {
+  display: none !important;
+}
+
+/* =========================
+   2️⃣ Material Icons 字体
+   ========================= */
+
+button[title="打开/关闭预览"] span,
+button[title="Toggle preview"] span,
+button[title="同步滚动"] span,
+button[title="Sync scrolling"] span {
+  font-family: "Material Icons" !important;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   3️⃣ 打开/关闭预览 图标
+   ========================= */
+
+button[title="打开/关闭预览"] span::after,
+button[title="Toggle preview"] span::after {
+  content: "visibility";
+}
+
+/* =========================
+   4️⃣ 同步滚动 图标
+   ========================= */
+
+button[title="同步滚动"] span::after,
+button[title="Sync scrolling"] span::after {
+  content: "arrow_circle_down";
+}
