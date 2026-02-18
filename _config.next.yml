@@ -26,7 +26,7 @@ custom_file_path:
   #postBodyStart: source/_data/post-body-start.njk
   #postBodyEnd: source/_data/post-body-end.njk
   #footer: source/_data/footer.njk
-  #bodyEnd: source/_data/body-end.njk
+  bodyEnd: source/_data/body-end.njk
   #variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
   style: source/_data/styles.styl
@@ -571,12 +571,12 @@ math:
   # Default (false) will load mathjax / katex script on demand.
   # That is it only render those page which has `mathjax: true` in front-matter.
   # If you set it to true, it will load mathjax / katex script EVERY PAGE.
-  every_page: false
+  every_page: true
 
   mathjax:
     enable: false
     # Available values: none | ams | all
-    tags: none
+    tags: ams
 
   katex:
     enable: false
