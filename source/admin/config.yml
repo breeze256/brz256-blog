@@ -10,49 +10,18 @@ locale: zh_Hans
 media_folder: "source/images"
 public_folder: "/images"
 
-publish_mode: editorial_workflow
-
 collections:
-
   - name: "posts"
-    label: "文章"
-    label_singular: "文章"
+    label: "Posts"
     folder: "source/_posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    preview_path: "{{year}}/{{month}}/{{slug}}"
-
+    format: "frontmatter"
+    extension: "md"
     fields:
-      - label: "标题"
-        name: "title"
-        widget: "string"
-
-      - label: "发布日期"
-        name: "date"
-        widget: "datetime"
-        format: "YYYY-MM-DD HH:mm:ss"
-
-      - label: "标签"
-        name: "tags"
-        widget: "list"
-        required: false
-
-      - label: "分类"
-        name: "categories"
-        widget: "list"
-        required: false
-
-      - label: "摘要"
-        name: "description"
-        widget: "text"
-        required: false
-
-      - label: "是否置顶"
-        name: "top"
-        widget: "boolean"
-        default: false
-        required: false
-
-      - label: "正文"
-        name: "body"
-        widget: "markdown"
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "更新日期", name: "updated", widget: "datetime", required: false }
+      - { label: "标签", name: "tags", widget: "list" }
+      - { label: "分类", name: "categories", widget: "list" }
+      - { label: "正文", name: "body", widget: "markdown" }
