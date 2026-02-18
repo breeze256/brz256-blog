@@ -1,7 +1,8 @@
 // 1️⃣ 加载 NexT 主样式
 CMS.registerPreviewStyle("/css/main.css");
+CMS.registerPreviewStyle("/admin/preview.css");
 
-// 2️⃣ 注册 Preview 模板
+// 3️⃣ 注册 Preview 模板
 const PostPreview = createClass({
   render() {
     const entry = this.props.entry;
@@ -13,7 +14,7 @@ const PostPreview = createClass({
 
     return h(
       "div",
-      { className: "main-inner" },   // NexT 主容器
+      { className: "main-inner" },
       h(
         "div",
         { className: "content-wrap" },
