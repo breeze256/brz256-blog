@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 title: Test
 date: 2026-02-18 13:19:23
 tags: null

@@ -3,7 +3,7 @@
 const striptags = require('striptags');
 
 hexo.extend.filter.register('after_post_render', data => {
-  if (data.layout !== 'post') return data;
+  if (data.layout !== 'posts') return data;
 
   const limit = 300;
   const chars = Array.from(

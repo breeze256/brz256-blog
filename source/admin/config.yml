@@ -11,7 +11,7 @@ media_folder: "source/images"
 public_folder: "/images"
 
 collections:
-  - name: "posts"
+  - name: "post"
     label: "Posts"
     folder: "source/_posts"
     create: true
