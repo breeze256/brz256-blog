@@ -23,3 +23,13 @@ int main() {
 ```
 - 测试
 - 测试
+
+## MathJax 测试
+泰勒展开：
+$$
+f(x) = \sum_{n=0}^\infty\dfrac{f^{(n)}(x)}{n!}x^n
+$$
+欧拉公式：
+$$
+\mathrm{e}^{i\pi} +1 = 0
+$$
