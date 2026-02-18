@@ -43,4 +43,4 @@ const PostPreview = createClass({
   }
 });
 
-CMS.registerPreviewTemplate("posts", PostPreview);
+CMS.registerPreviewTemplate("post", PostPreview);
