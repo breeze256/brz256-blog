@@ -187,6 +187,7 @@ links_settings:
 
 links:
   主页: https://breeze256.ink
+  管理面板: https://breeze256.ink/admin/
 
 # Table of Contents in the Sidebar
 # Front-matter variable (nonsupport wrap expand_all).
