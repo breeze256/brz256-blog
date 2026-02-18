@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: breeze256/brz256-blog
+  repo: "breeze256/brz256-blog"
   branch: main
-  auth_type: implicit
-  app_id: Ov23lisSubyhGbm2xhta
+  base_url: https://decap.breeze256.ink
+  auth_endpoint: /auth
 
 locale: zh_Hans
 
