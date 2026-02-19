@@ -99,9 +99,9 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: next
 
-## Excerpt
-excerpt:
-  depth: 3
+pandoc:
+  args:
+    - --mathjax
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
