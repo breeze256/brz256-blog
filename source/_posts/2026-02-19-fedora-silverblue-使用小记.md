@@ -2,13 +2,13 @@
 title: Fedora Silverblue 使用小记
 date: 2026-02-19T21:37:00.000+08:00
 updated: 2026-02-19T21:37:00.000+08:00
-draft: true
 tags:
   - 随笔
   - Linux
   - Fedora
 categories:
   - 随笔
+hidden: true
 ---
 其实很早之前就听别人说过 [VanillaOS](https://vanillaos.org/) 这个不可变发行版，当时我很不以为然：“‘不可变’发行版？装软件装不了、拷文件也拷不了，我还用啥？”后面才知道所谓“不可变”其实主要指的是系统文件“相对不可变“：每次更改后创建一个叠加层，而Linux运行时系统文件不可变从而保证稳定性与安全性。
 

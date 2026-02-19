@@ -43,7 +43,7 @@ filename_case: 0
 render_drafts: false
 post_asset_folder: false
 relative_link: false
-future: true
+future: false
 syntax_highlighter: highlight.js
 highlight:
   line_number: true
@@ -109,6 +109,12 @@ search:
   field: post
   content: true
   format: html
+
+# hexo-hide-posts
+hide_posts:
+  filter: hidden
+  public_generators: []
+  noindex: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
