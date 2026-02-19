@@ -2,6 +2,7 @@
 title: Fedora Silverblue 使用小记
 date: 2026-02-19T21:37:00.000+08:00
 updated: 2026-02-19T21:37:00.000+08:00
+draft: true
 tags:
   - 随笔
   - Linux
