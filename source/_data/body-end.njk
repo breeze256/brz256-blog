@@ -1,4 +1,4 @@
-{% if is_post() %}
+{% if page and page.layout == 'post' %}
 <script>
 window.MathJax = {
   loader: {
@@ -6,6 +6,14 @@ window.MathJax = {
   },
   output: {
      font: 'mathjax-fira'
+  },
+  options: {
+    enableMenu: false,
+    menuOptions: {
+      settings: {
+        enrich: false,
+      }
+    }
   },
   tex: {
     inlineMath: {'[+]': [['$', '$']]},
