@@ -19,15 +19,18 @@ jobs:
         with:
           submodules: recursive
 
-      - uses: actions/setup-node@v4
+      # Node.js 安装（与你原来一致）
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      - name: Install pandoc
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y pandoc
+      # Pandoc 安装（与 Node 风格对称）
+      - name: Setup Pandoc
+        uses: pandoc/actions/setup@v1
+        with:
+          version: 3.5
 
       - run: npm ci
       - run: npm run build
