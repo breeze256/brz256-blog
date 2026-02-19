@@ -844,15 +844,15 @@ plausible:
 # Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
 # Visit https://firebase.google.com/docs/firestore/ to get more information about firestore.
 firestore:
-  enable: false
-  collection: articles # Required, a string collection name to access firestore database
-  apiKey: # Required
-  projectId: # Required
+  enable: true
+  collection: post # Required, a string collection name to access firestore database
+  apiKey: AIzaSyBa19PXmjY-SV5zLN7BnIhwBiDUnejtxUg # Required
+  projectId: brz256-blog # Required
 
 # Show Views / Visitors of the website / page with busuanzi.
 # For more information: http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: fa fa-user
   total_views: true
@@ -926,12 +926,12 @@ vendors:
   # The default CDN provider of third-party plugins.
   # Available values: local | jsdelivr | unpkg | cdnjs | custom
   # Dependencies for `plugins: local`: https://github.com/next-theme/plugins
-  plugins: cdnjs
+  plugins: custom
   # Custom CDN URL
   # For example:
   # custom_cdn_url: https://cdn.jsdelivr.net/npm/${npm_name}@${version}/${minified}
   # custom_cdn_url: https://cdnjs.cloudflare.com/ajax/libs/${cdnjs_name}/${version}/${cdnjs_file}
-  custom_cdn_url:
+  custom_cdn_url: https://s4.zstatic.net/ajax/libs/${cdnjs_name}/${version}/${cdnjs_file}
 
 # Assets
 # Accelerate delivery of static files using a CDN
