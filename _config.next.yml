@@ -166,6 +166,8 @@ site_state: true
 social:
   GitHub: https://github.com/breeze256 || fab fa-github
   E-Mail: mailto:breeze256@foxmail.com || fa fa-envelope
+  Zhihu: https://www.zhihu.com/people/cortana-8 || fab fa-zhihu
+  QQ: https://qm.qq.com/q/1MWqLJ9xV2 || fab fa-qq
   #Weibo: https://weibo.com/yourname || fab fa-weibo
   #Twitter: https://twitter.com/yourname || fab fa-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
@@ -187,7 +189,7 @@ links_settings:
 
 links:
   主页: https://breeze256.ink
-  管理面板: https://blog.breeze256.ink/admin/
+  管理面板: /admin/
 
 # Table of Contents in the Sidebar
 # Front-matter variable (nonsupport wrap expand_all).

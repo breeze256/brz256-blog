@@ -1,5 +1,7 @@
 /* source/_data/styles.styl */
 
+/* == Material Icons == */
+
 /* =========================================
    1. 图标映射配置表
    格式：'FontAwesome 类名': 'Material Icons 名称'
@@ -13,14 +15,12 @@ material_icons_map = {
   '.fa-heartbeat': 'monitor_heart'
   
   /* 社交 */
-  '.fa-github': 'code'
-  '.fa-twitter': 'chat'
-  '.fa-weibo': 'share'
-  '.fa-zhihu': 'lightbulb'
   '.fa-envelope': 'mail'
   
   /* 文章信息 */
-  '.fa-calendar': 'calendar_today'
+  '.fa-calendar': 'edit_calendar'
+  '.fa-calendar-check': 'event_available'
+  '.fa-folder': 'folder'
   '.fa-clock': 'schedule'
   '.fa-pencil': 'edit'
   
@@ -71,6 +71,7 @@ for fa_selector, mi_name in material_icons_map
 .post-meta .fa
   margin-right 2px
 
+/* == Misc == */
 
 // 整体背景设置
 body {
