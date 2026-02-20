@@ -28,8 +28,6 @@ categories:
 
 ![silverblue](/images/fedora-silverblue-light.png)
 
-
-
 ## 安装
 
 和一般发行版类似，将镜像烧录到 U 盘，使用 [Anaconda](https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/install/Installing_Using_Anaconda/) 配置安装。这里建议划一整块区直接安装装（不建议手动分区，因为不可变发行版的目录结构与一般的发行版是有区别的）。
@@ -85,7 +83,7 @@ rpm-ostree initramfs --enable --arg=-I --arg=/etc/modprobe.d/hid_apple.conf
 
 ## rpm-ostree 常用操作
 
-
+![rpm-ostree](/images/rpm-ostree-square.png)
 
 Silveblue 的包管理与系统升级采用 rpm-ostree 原子部署。每一次操作都是：
 
@@ -192,6 +190,8 @@ reboot
 其他的操作可以去看 [Silverblue（Atomic） 的官方文档](https://docs.fedoraproject.org/en-US/atomic-desktops/)。
 
 ## Toolbox
+
+![toolbx](/images/toolbox-square.png)
 
 [Toolbox](https://containertoolbx.org/) 是以 Podman（Docker 的开源平替）为后端的的面向开发者的容器化工作环境工具。目的是为了在不可变发行版上创建可变的开发环境。说人话就是分块儿地（容器）装你那一大坨开发要用的软件包（gcc, clang, node, python 啥的），免得把你系统给搞”脏“了。Silverblue 已经自带了 Toolbox，因此我们直接创建新容器就行了：
 
