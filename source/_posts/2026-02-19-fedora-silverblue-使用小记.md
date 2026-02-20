@@ -1,8 +1,8 @@
 ---
 title: Fedora Silverblue 使用小记
 date: 2026-02-19T21:37:00.000+08:00
-updated: 2026-02-19T21:37:00.000+08:00
-hidden: true
+updated: 2026-02-20T16:53:00.000+08:00
+hidden: false
 tags:
   - 随笔
   - Linux
@@ -135,7 +135,7 @@ rpm-ostree cleanup -m
 
 ### Layered Packages（分层包）
 
-你可以在基础镜像之上“叠加”RPM包：
+你可以在基础镜像之上“叠加” RPM 包：
 ```bash
 rpm-ostree install vim
 ```
@@ -159,6 +159,7 @@ rpm-ostree upgrade
 执行后系统会下载新镜像 -> 创建新 deployment，最后需要重启切换。
 
 如果升级后出问题：
+
 ```bash
 rpm-ostree rollback
 reboot
@@ -169,4 +170,105 @@ reboot
 
 ## Toolbox
 
-[Toolbox](https://containertoolbx.org/) 是以 Podman（Docker 的开源平替）为后端的的面向开发者的容器化工作环境工具。目的是为了在不可变发行版上创建可变的开发环境。
+[Toolbox](https://containertoolbx.org/) 是以 Podman（Docker 的开源平替）为后端的的面向开发者的容器化工作环境工具。目的是为了在不可变发行版上创建可变的开发环境。说人话就是分块儿地（容器）装你那一大坨开发要用的软件包（gcc, clang, node, python 啥的），免得把你系统给搞”脏“了。Silverblue 已经自带了 Toolbox，因此我们直接创建新容器就行了：
+
+```bash
+toolbox create devbox --distro ubuntu --release 24.04
+```
+
+之后要进入容器，直接输入 `toolbox enter devbox` 就行了。在容器里面就和一般的发行版一样，想干啥干啥。
+
+## VSCode
+
+参看：[VSCode + Dev Containers and Toolbx/Distrobox setup for Fedora Silverblue](https://gist.github.com/lbssousa/bb081e35d483520928033b2797133d5e)
+
+Silverblue 的 VSCode 配置起来还有点麻烦,这里给出一个实用性最强的方案。
+
+首先安装 VSCode Flatpak：
+
+```bash
+flatpak install com.visualstudio.code
+```
+
+为了让 Flatpak 版的 VSCode 能调用 podman，在终端中运行：
+
+```bash
+mkdir -p ${HOME}/.var/app/com.visualstudio.code/data/node_modules/bin
+ln -sf /app/bin/host-spawn ${HOME}/.var/app/com.visualstudio.code/data/node_modules/bin/podman
+```
+
+注入一些需要用到的环境变量：
+
+```bash
+flatpak --user override --env HOST_DISPLAY="$DISPLAY" --env HOST_SHELL="$SHELL" --env HOST_SSH_AUTH_SOCK="$SSH_AUTH_SOCK" com.visualsudio.code
+```
+
+打开 VSCode，安装 Dev Containers 扩展，然后把其后端更改为 podman（`dev.containers.dockerPath = "podman"`）。
+
+新建文件 `${HOME}/.var/app/com.visualstudio.code/config/Code/User/globalStorage/ms-vscode-remote.remote-containers/nameConfigs/${YOUR_DISTROBOX_CONTAINER_NAME}.json`，然后添加以下内容：
+
+```json
+{
+  "remoteUser": "${localEnv:USER}",
+  "settings": {
+    "dev.containers.copyGitConfig": false,
+    "dev.containers.gitCredentialHelperConfigLocation": "none"
+  },
+
+  "terminal.integrated.profiles.linux": {
+    "distrobox": {
+      "path": "${localEnv:SHELL}",
+      "args": [
+        "-l"
+      ]
+    },
+    "toolbx": {
+      "path": "/usr/sbin/capsh",
+      "args": [
+        "--caps=",
+        "--",
+        "-c",
+        "exec \"\$@\"",
+        "/bin/sh",
+        "${localEnv:SHELL}",
+        "-l"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "toolbx",
+
+  "remoteEnv": {
+    "COLORTERM": "${localEnv:COLORTERM}",
+    "DBUS_SESSION_BUS_ADDRESS": "${localEnv:DBUS_SESSION_BUS_ADDRESS}",
+    "DESKTOP_SESSION": "${localEnv:DESKTOP_SESSION}",
+    "DISPLAY": "${localEnv:HOST_DISPLAY}",
+    "LANG": "${localEnv:LANG}",
+    "SHELL": "${localEnv:HOST_SHELL}",
+    "SSH_AUTH_SOCK": "${localEnv:HOST_SSH_AUTH_SOCK}",
+    "TERM": "${localEnv:TERM}",
+    "VTE_VERSION": "${localEnv:VTE_VERSION}",
+    "XDG_CURRENT_DESKTOP": "${localEnv:XDG_CURRENT_DESKTOP}",
+    "XDG_DATA_DIRS": "${localEnv:XDG_DATA_DIRS}",
+    "XDG_MENU_PREFIX": "${localEnv:XDG_MENU_PREFIX}",
+    "XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
+    "XDG_SESSION_DESKTOP": "${localEnv:XDG_SESSION_DESKTOP}",
+    "XDG_SESSION_TYPE": "${localEnv:XDG_SESSION_TYPE}"
+  }
+}
+```
+
+进入容器，进行以下操作：
+
+```bash
+sudo mkdir /.vscode-server
+sudo chown ${USER}:${USER} /.vscode-server
+ln -sf /.vscode-server ${HOME}/.vscode-server
+sudo chmod 755 /root
+sudo ln -sf /.vscode-server /root/.vscode-server
+```
+
+最后新建文件 `${HOME}/.local/bin/code`，把 https://raw.githubusercontent.com/owtaylor/toolbox-vscode/refs/heads/main/code.sh 内容添加进去，然后 `chmod +x ${HOME}/.local/bin/code`。这样你就可以在开发容器中通过 `code <path>` 用 VSCode 来打开项目文件夹了。
+
+## 总结
+
+还没用多久，以后再来总结吧 qwq。
