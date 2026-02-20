@@ -16,15 +16,15 @@ categories:
 
 * 稳定性与安全性远超传统发行版：保证你不会手残删掉重要的系统文件，即使手残搞坏系统也可以滚回上一个叠加层；
 * 开箱即用：不用折腾各种系统组件（各种 DE, WM、pulseaudio 等），安装好就能直接用；
-* 通用性强：GUI软件有Flatpak兜底，CLI程序可以通过容器（例如 Ubuntu）来运行，平时使用不会再有发行版焦虑；
+* 通用性强：GUI软件有Flatpak兜底，CLI程序可以通过容器（例如Ubuntu）来运行，平时使用不会再有发行版焦虑；
 
 但它的缺点其实也挺明显的：
 
-* 占用较大：Flatpak、容器化等特点注定它与轻量发行版扯不上多少关系（当然 CoreOS 除外）;
+* 占用较大：Flatpak、容器化等特点注定它与轻量发行版扯不上多少关系（当然CoreOS除外）;
 * 自由度较低：改不了太多系统文件（但说回来你要高定制性选不可变发行版干啥）；
-* 国内使用体验较差：很多不可变发行版没有国内软件源，以及 Flathub 软件源（但现在有个 ustc，能将就用）。
+* 国内使用体验较差：很多不可变发行版没有国内软件源，以及Flathub 软件源（但现在有个ustc，能将就用）。
 
-最后我还是选择了 Fedora Silverblue （以下简称Silverblue）来尝鲜（Red Hat大厂值得信赖XD）。
+最后我还是选择了 Fedora Silverblue（以下简称Silverblue）来尝鲜（Red Hat大厂值得信赖XD）。
 
 ![silverblue](/images/fedora-silverblue-light.png)
 
