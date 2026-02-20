@@ -13,16 +13,22 @@ categories:
 其实很早之前就听别人说过 [VanillaOS](https://vanillaos.org/) 这个不可变发行版，当时我很不以为然：“‘不可变’发行版？装软件装不了、拷文件也拷不了，我还用啥？”后面才知道所谓“不可变”其实主要指的是系统文件“相对不可变“：每次更改后创建一个叠加层，而 Linux 运行时系统文件不可变从而保证稳定性与安全性。
 
 以我的理解，不可变发行版主要有这些优点：
-- 稳定性与安全性远超传统发行版：保证你不会手残删掉重要的系统文件，即使手残搞坏系统也可以滚回上一个叠加层；
-- 开箱即用：不用折腾各种系统组件（各种 DE, WM、pulseaudio 等），安装好就能直接用；
-- 通用性强：GUI 软件有 Flatpak 兜底，CLI 程序可以通过容器（例如 Ubuntu）来运行，平时使用不会再有发行版焦虑；
+
+* 稳定性与安全性远超传统发行版：保证你不会手残删掉重要的系统文件，即使手残搞坏系统也可以滚回上一个叠加层；
+* 开箱即用：不用折腾各种系统组件（各种 DE, WM、pulseaudio 等），安装好就能直接用；
+* 通用性强：GUI 软件有 Flatpak 兜底，CLI 程序可以通过容器（例如 Ubuntu）来运行，平时使用不会再有发行版焦虑；
 
 但它的缺点其实也挺明显的：
-- 占用较大：Flatpak、容器化等特点注定它与轻量发行版扯不上多少关系（当然 CoreOS 除外）;
-- 自由度较低：改不了太多系统文件（但说回来你要高定制性选不可变发行版干啥）；
-- 国内使用体验较差：很多不可变发行版没有国内软件源，以及 Flathub 软件源（但现在有个 ustc，能将就用）。
+
+* 占用较大：Flatpak、容器化等特点注定它与轻量发行版扯不上多少关系（当然 CoreOS 除外）;
+* 自由度较低：改不了太多系统文件（但说回来你要高定制性选不可变发行版干啥）；
+* 国内使用体验较差：很多不可变发行版没有国内软件源，以及 Flathub 软件源（但现在有个 ustc，能将就用）。
 
 最后我还是选择了 Fedora Silverblue （以下简称 Silverblue）来尝鲜（Red Hat 大厂值得信赖XD）。
+
+![silverblue](/images/fedora-silverblue-light.png)
+
+
 
 ## 安装
 
@@ -33,6 +39,7 @@ categories:
 ### 更换软件源
 
 众所周知，在国内安装好 Linux 的第一步就是换源。这一步与普通发行版没有太大区别（在 Silverblue 中 /etc 目录是可变的），我这里选择的是 [USTC 源](https://mirrors.ustc.edu.cn/help/fedora.html) ，在终端输入以下命令即可：
+
 ```bash
 sudo sed -e 's|^metalink=|#metalink=|g' \
          -e 's|^#baseurl=http://download.example/pub/fedora/linux|baseurl=https://mirrors.ustc.edu.cn/fedora|g' \
@@ -44,31 +51,41 @@ sudo sed -e 's|^metalink=|#metalink=|g' \
 ### 添加 Flathub 缓存
 
 考虑到 Flatpak 在不可变发行版的地位，这里强烈建议为 Flathub 添加缓存。还是推荐 [USTC 的 Flathub 缓存](https://mirrors.ustc.edu.cn/help/flathub.html)，由于 Silverblue 中已经自带了 Flathub 源，因此只需要在终端中输入：
+
 ```
 sudo flatpak remote-modify flathub --url=https://mirrors.ustc.edu.cn/flathub
-``` 
+```
+
 即可。
 
 ### 配置 Apple Keyboard
 
+参看：[
+Fix fn behavior for keyboards which are identified as Apple keyboard ](https://discussion.fedoraproject.org/t/fix-fn-behavior-for-keyboards-which-are-identified-as-apple-keyboard/80635)
+
 我买的迈从 K99 键盘是 Apple 布局，为了正确映射功能键，得改一些配置。
 
 首先用 nano 编辑 `/etc/modprobe.d/hid_apple.conf`：
+
 ```bash
 nano /etc/modprobe.d/hid_apple.conf
 ```
 
 在其中添加内容：
+
 ```
 options hid_apple fnmode=2
 ```
 
 最后为了持久化更改，得手动添加个叠加层：
+
 ```bash
 rpm-ostree initramfs --enable --arg=-I --arg=/etc/modprobe.d/hid_apple.conf
 ```
 
 ## rpm-ostree 常用操作
+
+
 
 Silveblue 的包管理与系统升级采用 rpm-ostree 原子部署。每一次操作都是：
 
@@ -90,6 +107,7 @@ Silveblue 的包管理与系统升级采用 rpm-ostree 原子部署。每一次�
 Silverblue 的每次安装/升级都会生成一个新的系统快照。且可以同时保留多个版本。
 
 在终端中输入：
+
 ```bash
 rpm-ostree status
 ```
@@ -127,6 +145,7 @@ Deployments:
 在这里你可以看到有哪些存在的系统快照，以及每个快照存在哪些叠加上去的软件包。你可以在 GRUB 中切换要启动的系统快照。
 
 如果你要清理旧的部署，运行：
+
 ```bash
 rpm-ostree cleanup -m
 ```
@@ -136,6 +155,7 @@ rpm-ostree cleanup -m
 ### Layered Packages（分层包）
 
 你可以在基础镜像之上“叠加” RPM 包：
+
 ```bash
 rpm-ostree install vim
 ```
@@ -143,6 +163,7 @@ rpm-ostree install vim
 叠加上去的软件包只有重启后才能使用。
 
 删除分层包：
+
 ```bash
 rpm-ostree remove vim
 ```
@@ -152,6 +173,7 @@ rpm-ostree remove vim
 ### 升级/回滚系统
 
 在终端中输入：
+
 ```bash
 rpm-ostree upgrade
 ```
@@ -164,6 +186,7 @@ rpm-ostree upgrade
 rpm-ostree rollback
 reboot
 ```
+
 就可以切换到上一个 deployment。
 
 其他的操作可以去看 [Silverblue（Atomic） 的官方文档](https://docs.fedoraproject.org/en-US/atomic-desktops/)。
