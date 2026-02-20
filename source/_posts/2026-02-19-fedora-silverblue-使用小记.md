@@ -290,7 +290,7 @@ sudo chmod 755 /root
 sudo ln -sf /.vscode-server /root/.vscode-server
 ```
 
-最后新建文件 `${HOME}/.local/bin/code`，把 https://raw.githubusercontent.com/owtaylor/toolbox-vscode/refs/heads/main/code.sh 内容添加进去，然后 `chmod +x ${HOME}/.local/bin/code`。这样你就可以在开发容器中通过 `code <path>` 用 VSCode 来打开项目文件夹了。
+最后新建 `${HOME}/.local/bin/code`，把[这里面的](https://raw.githubusercontent.com/owtaylor/toolbox-vscode/refs/heads/main/code.sh)内容添加进去，然后 `chmod +x ${HOME}/.local/bin/code`。这样你就可以在开发容器中通过 `code <path>` 用VSCode来打开项目文件夹了。
 
 ## 总结
 
