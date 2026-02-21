@@ -1,3 +1,7 @@
 .main-inner {
     margin: auto !important;
 }
+
+.mjx-container {
+    margin: 0 0.20em;
+}
