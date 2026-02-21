@@ -14,7 +14,7 @@ categories:
 
 ## 正文
 
-Silverblue的VSCode配置起来还有点麻烦,这里给出一个实用性最强的方案。
+Silverblue的VSCode配置起来还有点麻烦,这里给出一个实用性最强的方案Pwa（Toolbox+Flatpak版VSCode，Silverblue默认安装了Toolbox）。
 
 首先安装 VSCode Flatpak：
 
