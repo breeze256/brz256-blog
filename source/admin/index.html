@@ -21,10 +21,16 @@
       import remarkGfm from 'https://esm.sh/remark-gfm@4.0.0?bundle';
       import rehypeRaw from 'https://esm.sh/rehype-raw@7.0.0?bundle';
 
+      const mathJaxOptions = {
+        tex: {
+          macros: { e: "\\mathrm{e}", i: "\\mathrm{i}", d: "\\mathrm{d}" }
+        }
+      };
+
       window.MarkdownComponent = Markdown;
       window.MarkdownPlugins = {
         remarkPlugins: [remarkMath, remarkGfm],
-        rehypePlugins: [rehypeMathjax, rehypeRaw]
+        rehypePlugins: [[rehypeMathjax, mathJaxOptions], rehypeRaw]
       };
       
       window.renderMathJax = () => {

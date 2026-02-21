@@ -10,7 +10,10 @@
       enableMenu: false,
       menuOptions: { settings: { enrich: false } }
     },
-    tex: { packages: { '[+]': ['tagformat'] } }
+    tex: {
+      packages: { '[+]': ['tagformat'] },
+      macros: { e: "\\mathrm{e}", i: "\\mathrm{i}", d: "\\mathrm{d}" }
+    }
   };
 
   const shouldLoad = () => {
