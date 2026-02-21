@@ -22,8 +22,8 @@
       import rehypeRaw from 'https://esm.sh/rehype-raw@7.0.0?bundle';
 
       const mathJaxOptions = {
+        packages: { '[+]': ['tagformat', 'mhchem'] },
         tex: {
-          packages: { '[+]': ['tagformat', 'mhchem'] },
           macros: { e: "\\mathrm{e}", i: "\\mathrm{i}", d: "\\mathrm{d}" }
         }
       };
