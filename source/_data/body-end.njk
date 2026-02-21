@@ -1,25 +1,2 @@
-{% if page and page.layout == 'post' %}
-<script>
-window.MathJax = {
-  loader: {
-    load: ['[tex]/tagformat']
-  },
-  output: {
-     font: 'mathjax-fira'
-  },
-  options: {
-    enableMenu: false,
-    menuOptions: {
-      settings: {
-        enrich: false,
-      }
-    }
-  },
-  tex: {
-    inlineMath: {'[+]': [['$', '$']]},
-    packages: {'[+]': ['tagformat']}
-  }
-};
-</script>
-<script id="MathJax-script" async src="https://s4.zstatic.net/npm/mathjax@4.1.0/tex-mml-chtml.js"></script>
-{% endif %}
+<!-- Custom Javascripts -->
+<script src="/js/load-mathjax.js"></script>
