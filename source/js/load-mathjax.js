@@ -4,14 +4,14 @@
   const SCRIPT_ID = 'mathjax-script';
 
   const config = {
-    loader: { load: ['[tex]/tagformat'] },
+    loader: { load: ['[tex]/tagformat', '[tex]/mhchem'] },
     output: { font: 'mathjax-fira' },
     options: {
       enableMenu: false,
       menuOptions: { settings: { enrich: false } }
     },
     tex: {
-      packages: { '[+]': ['tagformat'] },
+      packages: { '[+]': ['tagformat', 'mhchem'] },
       macros: { e: "\\mathrm{e}", i: "\\mathrm{i}", d: "\\mathrm{d}" }
     }
   };
