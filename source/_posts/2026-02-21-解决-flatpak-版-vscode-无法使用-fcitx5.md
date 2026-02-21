@@ -1,7 +1,7 @@
 ---
 title: 解决 Flatpak 版 VSCode 无法使用 Fcitx5
 date: 2026-02-21T08:38:00.000+08:00
-updated: 2026-02-21T08:38:00.000+08:00
+updated: 2026-02-21T11:19:00.000+08:00
 hidden: false
 tags:
   - Linux
