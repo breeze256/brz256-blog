@@ -2,7 +2,7 @@
 title: 解决 Flatpak 版 VSCode 无法使用 Fcitx5
 date: 2026-02-21T08:38:00.000+08:00
 updated: 2026-02-21T08:38:00.000+08:00
-hidden: true
+hidden: false
 tags:
   - Linux
   - Flatpak
@@ -31,3 +31,7 @@ flatpak install org.fcitx.Fcitx5
 Flatpak环境隔离了系统环境，导致无法正常调用Fcitx5，这里是相当于给Flatpak环境添加了输入法模块程序库。
 
 参考：[flatpak无法使用输入法的解决方法](https://zhuanlan.zhihu.com/p/510162497)
+
+## 其它注意事项
+
+理论上来说现在不再需要安装Flatpak版的Fcitx5了，且其它Flatpak应用不安装也是可以正常调用系统Fcitx5的，但Flatpak版VSCode只有在安装了之后才能正常调用Fcitx5，原因未知。
