@@ -1,4 +1,4 @@
-/*== Dynamically Load MathJax in PJAX (Persistent Version) ==*/
+/*== Dynamically Load MathJax in PJAX ==*/
 (() => {
   const CDN = 'https://s4.zstatic.net/npm/mathjax@4.1.0/tex-mml-chtml.js';
 
