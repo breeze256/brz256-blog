@@ -1,6 +1,6 @@
 /*== Dynamically Load MathJax in PJAX ==*/
 (() => {
-  const CDN = '//s4.zstatic.net/npm/mathjax@4.1.0/tex-mml-chtml.js';
+  const CDN = '//s4.zstatic.net/npm/mathjax@4.1.1/tex-mml-chtml.js';
   const SCRIPT_ID = 'mathjax-script';
 
   const config = {
