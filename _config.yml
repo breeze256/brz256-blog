@@ -103,7 +103,7 @@ pandoc:
   args:
     - --mathjax
     - -f
-    - commonmark
+    - commonmark_x+autolink_bare_uris
 
 # Searchdb
 search:
