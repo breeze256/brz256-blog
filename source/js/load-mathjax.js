@@ -1,7 +1,6 @@
-/*== Dynamically Load MathJax in PJAX ==*/
+/*== Dynamically Load MathJax in PJAX (Persistent Version) ==*/
 (() => {
-  const CDN = '//s4.zstatic.net/npm/mathjax@4.1.1/tex-mml-chtml.js';
-  const SCRIPT_ID = 'mathjax-script';
+  const CDN = 'https://s4.zstatic.net/npm/mathjax@4.1.0/tex-mml-chtml.js';
 
   const config = {
     loader: { load: ['[tex]/tagformat', '[tex]/mhchem'] },
@@ -16,35 +15,33 @@
     }
   };
 
-  const shouldLoad = () => {
-    const post = document.querySelector('.post');
-    return post && /\\\(|\\\[|\$\$|\$/.test(post.textContent);
-  };
+  const post = () => document.querySelector('.post');
 
-  const ensure = async () => {
-    if (!shouldLoad()) {
-      document.getElementById(SCRIPT_ID)?.remove();
-      document.querySelectorAll('mjx-container').forEach(e => e.remove());
-      delete window.MathJax;
-      return;
-    }
+  const hasMath = el =>
+    el && /\\\(|\\\[|\$\$|\$/.test(el.textContent);
 
-    if (!window.MathJax) {
-      window.MathJax = config;
-      await new Promise(resolve => {
-        const s = document.createElement('script');
-        s.src = CDN;
-        s.id = SCRIPT_ID;
-        s.async = true;
-        s.onload = resolve;
-        document.head.appendChild(s);
-      });
-    }
+  const load = () =>
+    window.MathJax?.startup
+      ? Promise.resolve()
+      : new Promise(r => {
+          window.MathJax = config;
+          const s = document.createElement('script');
+          s.src = CDN;
+          s.async = true;
+          s.onload = r;
+          document.head.appendChild(s);
+        });
 
+  const render = async () => {
+    const el = post();
+    if (!hasMath(el)) return;
+
+    await load();
     await window.MathJax.startup.promise;
-    await window.MathJax.typesetPromise([document.querySelector('.post')]);
+    window.MathJax.typesetClear([el]);
+    await window.MathJax.typesetPromise([el]);
   };
 
-  document.addEventListener('DOMContentLoaded', ensure);
-  document.addEventListener('pjax:success', ensure);
+  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('pjax:success', render);
 })();
