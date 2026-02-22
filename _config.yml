@@ -102,6 +102,8 @@ theme: next
 pandoc:
   args:
     - --mathjax
+    - -f
+    - commonmark
 
 # Searchdb
 search:
