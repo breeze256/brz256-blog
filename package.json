@@ -12,7 +12,7 @@
     "version": "8.1.1"
   },
   "dependencies": {
-    "@mathjax/mathjax-stix2-font": "^4.1.0",
+    "@mathjax/mathjax-stix2-font": "^4.1.1",
     "hexo": "^8.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
