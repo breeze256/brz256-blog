@@ -3,16 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "build": "deno run -A npm:hexo-cli generate",
+    "clean": "deno run -A npm:hexo-cli clean",
+    "deploy": "deno run -A npm:hexo-cli deploy",
+    "server": "deno run -A npm:hexo-cli server"
   },
   "hexo": {
     "version": "8.1.1"
   },
   "dependencies": {
     "@mathjax/mathjax-stix2-font": "^4.1.1",
+    "css": "^3.0.0",
     "hexo": "^8.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
@@ -21,12 +22,15 @@
     "hexo-generator-tag": "^2.0.0",
     "hexo-hide-posts": "^0.4.3",
     "hexo-next-giscus": "^1.3.0",
+    "hexo-pangu": "^0.4.1",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-pandoc": "^0.5.0",
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^1.0.0",
     "hexo-theme-next": "^8.27.0",
+    "hexo-util": "^4.0.0",
+    "js-yaml": "^5.2.1",
     "striptags": "^3.2.0"
   }
 }

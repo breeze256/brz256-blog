@@ -19,21 +19,19 @@ jobs:
         with:
           submodules: recursive
 
-      # Node.js 安装（与你原来一致）
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
         with:
-          node-version: 20
-          cache: npm
+          deno-version: v2.x
 
-      # Pandoc 安装（与 Node 风格对称）
-      - name: Setup Pandoc
+      # Pandoc 安装（与 Deno 风格对称）
+      - name: Install Pandoc
         uses: pandoc/actions/setup@v1
         with:
           version: 3.5
 
-      - run: npm ci
-      - run: npm run build
+      - run: deno install --frozen
+      - run: deno task build
 
       - uses: actions/upload-pages-artifact@v3
         with:
